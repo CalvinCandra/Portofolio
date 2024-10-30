@@ -19,7 +19,11 @@ function IndexPage() {
           {/* konten atas */}
           <div className="flex justify-between items-center mb-40 md:mb-0">
             {/* Kiri */}
-            <div className="w-full md:w-[45%]">
+            <div
+              className="w-full md:w-[45%]"
+              data-aos="fade-down"
+              data-aos-duration="1500"
+            >
               <div>
                 <h2 className="font-light text-white text-xl md:text-6xl mb-2">
                   I'm
@@ -27,7 +31,7 @@ function IndexPage() {
                 <h1 className="font-extrabold text-white text-7xl">
                   Willy Candra
                 </h1>
-                <div className="w-[60%] p-1 bg-yellow-500 rounded-full mt-5"></div>
+                <div className="w-[82%] md:w-[60%] p-1 bg-yellow-500 rounded-full mt-5"></div>
               </div>
               <h3 className="w-full md:w-[90%] my-2 p-1 text-white font-light text-sm md:text-lg md:font-medium">
                 Someone who understands the world of websites. Let's contact me
@@ -36,7 +40,11 @@ function IndexPage() {
               </h3>
             </div>
             {/* Kanan */}
-            <div className="w-[55%] md:flex justify-center items-center relative hidden">
+            <div
+              className="w-[55%] md:flex justify-center items-center relative hidden"
+              data-aos="fade-up"
+              data-aos-duration="1500"
+            >
               <img
                 src={ImageData.heroImage}
                 className="w-[70%] relative z-10"
@@ -110,10 +118,10 @@ function IndexPage() {
           {/* Kiri */}
           <div className="w-full md:w-[45%]">
             <div>
-              <h2 className="font-medium text-white text-2xl md:text-6xl mb-2 text-center md:text-left">
+              <h2 className="font-medium text-white text-2xl md:text-6xl md:mb-2 text-center md:text-left">
                 ABOUT ME
               </h2>
-              <div className="w-[60%] p-1 bg-yellow-500 rounded-full mt-5 m-auto md:m-0"></div>
+              <div className="w-[30%] md:w-[35%] p-1 bg-yellow-500 rounded-full mt-1 md:mt-5 m-auto md:m-0"></div>
             </div>
             <h3 className="w-full md:w-[90%] my-2 p-1 text-white font-light text-sm text-center md:text-lg md:text-left">
               Hello, my name is Willy Calvin Candra Lay, usually called Willy. I
@@ -131,7 +139,7 @@ function IndexPage() {
         <div className="w-32 p-1 m-auto mb-5">
           <h2 className="font-bold text-white text-center text-3xl">
             Service
-            <div className="w-[100%] p-1 bg-yellow-500 rounded-full mt-2"></div>
+            <div className="w-[85%] md:w-[90%] p-1 bg-yellow-500 rounded-full mt-2 mx-auto"></div>
           </h2>
         </div>
         {/* card */}
@@ -154,7 +162,7 @@ function IndexPage() {
           <div className="mb-4">
             <h1 className="font-bold pb-1 text-white text-4xl">
               Best Project
-              <div className="w-[40%] md:w-[20%] p-1 bg-yellow-500 rounded-full mt-2"></div>
+              <div className="w-[65%] md:w-[13%] p-1 bg-yellow-500 rounded-full mt-2"></div>
             </h1>
             <p className="text-white font-light text-sm md:text-lg">
               The following are projects that I have worked on.
@@ -182,7 +190,7 @@ function IndexPage() {
           <div className="w-full md:w-[45%]">
             <div>
               <h1 className="font-extrabold text-white text-4xl">Contact Us</h1>
-              <div className="w-[60%] p-1 bg-yellow-500 rounded-full mt-5"></div>
+              <div className="w-[60%] md:w-[25%] p-1 bg-yellow-500 rounded-full mt-5"></div>
             </div>
             <h3 className="w-full md:w-[90%] my-2 p-1 text-white font-light text-sm md:text-lg md:font-medium">
               Let's get to know each other or ask each other questions, through
