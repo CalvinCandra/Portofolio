@@ -9,18 +9,15 @@ Saat ini, ada dua plugin resmi yang tersedia:
 
 ## Cara Menjalankan Proyek
 
-1. **Clone Repository**
-   Clone project ini dengan perintah berikut:
+1. Clone project ini dengan perintah berikut:
    ```bash
    git clone https://github.com/CalvinCandra/Portofolio.git
    ```
-2. **Instal Dependensi**
-   Jalankan perintah di bawah untuk menginstal NPM yang dimana akan menginstall dependensi diperlukan:
+2. Jalankan perintah di bawah untuk menginstal NPM yang dimana akan menginstall dependensi diperlukan:
    ```bash
    npm install
    ```
-3. **Run Project**
-   Jalankan perintah di bawah untuk menjalankan project :
+3. Jalankan perintah di bawah untuk menjalankan project :
    ```bash
    npm run dev
    ```
