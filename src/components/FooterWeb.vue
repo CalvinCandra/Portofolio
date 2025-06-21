@@ -57,7 +57,7 @@
               </li>
               <li class="mb-4">
                 <a
-                  href="www.linkedin.com/in/willycandra"
+                  href="https://www.linkedin.com/in/willycandra/"
                   target="_blank"
                   class="hover:text-primary hover:underline transition-all duration-300"
                   >Likendin</a
