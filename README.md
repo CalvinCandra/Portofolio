@@ -10,4 +10,3 @@ Saya seorang **[Full-Stack Developer]** yang bersemangat dalam menciptakan solus
 
 ✅ Responsive Design  
 ✅ Daftar Proyek Unggulan  
-✅ Formulir Kontak Interaktif
