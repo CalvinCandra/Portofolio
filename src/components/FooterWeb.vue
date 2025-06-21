@@ -65,7 +65,7 @@
               </li>
               <li>
                 <a
-                  href="www.linkedin.com/in/willycandra"
+                  href="https://www.instagram.com/willycandra12?igsh=YTRtbjZ5enRjenVq&utm_source=qr"
                   target="_blank"
                   class="hover:text-primary hover:underline transition-all duration-300"
                   >Instagram</a
