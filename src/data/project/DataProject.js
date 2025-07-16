@@ -20,7 +20,7 @@ const DataProject = [
       'Rekapan Absen (Siswa dan Guru)',
       'CRUD Pengumuman / Berita',
     ],
-    dibuat: 'Maret 2025 - Sekarang',
+    dibuat: 'Maret 2025 - Juli 2025',
     dikerjakan: 'Berkelompok / Bertim',
     tools: ['React', 'Tailwind', 'Github'],
   },
