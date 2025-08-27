@@ -1,36 +1,17 @@
 <script setup>
-import { ref, watch, onMounted, computed } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import DataProject from '@/data/project/DataProject'
-import DataSkill from '@/data/skill/DataSkill'
-import ButtonBg from '@/components/button/ButtonBg.vue'
+import { Swiper, SwiperSlide } from 'swiper/vue'
 
-const route = useRoute()
-const router = useRouter()
-const project = ref(null)
+// import Swiper styles
+import 'swiper/css'
+import 'swiper/css/free-mode'
+import 'swiper/css/navigation'
+import 'swiper/css/thumbs'
 
-const fetchProject = () => {
-  const projectId = route.params.id
-  const foundProject = DataProject.find((p) => p.id.toString() === projectId.toString())
+import { useProject } from '@/composables/useProject'
+import { useSwiper } from '@/composables/useSwiper'
 
-  if (!foundProject) {
-    router.push('/error')
-    return
-  }
-
-  project.value = foundProject
-}
-
-const projectSkills = computed(() => {
-  if (!project.value || !project.value.tools) return []
-
-  return DataSkill.filter((skill) =>
-    project.value.tools.map((tool) => tool.toLowerCase()).includes(skill.name.toLowerCase()),
-  )
-})
-
-onMounted(fetchProject)
-watch(() => route.params.id, fetchProject)
+const { project, projectSkills } = useProject()
+const { thumbsSwiper, setThumbsSwiper, modules } = useSwiper()
 </script>
 
 <template>
@@ -43,12 +24,45 @@ watch(() => route.params.id, fetchProject)
       </div>
 
       <!-- tampilkan gambar -->
-      <div class="w-full h-[15rem] md:h-[40rem] overflow-hidden">
-        <img :src="project.gambar" class="w-full h-full object-fill rounded" alt="Gambar Awal" />
+      <div class="">
+        <h3 class="text-2xl font-semibold text-primary">Preview</h3>
+        <swiper
+          :style="{
+            '--swiper-navigation-color': '#fff',
+            '--swiper-pagination-color': '#fff',
+          }"
+          :loop="true"
+          :spaceBetween="10"
+          :navigation="true"
+          :thumbs="{ swiper: thumbsSwiper }"
+          :modules="modules"
+          class="mySwiper2"
+        >
+          <swiper-slide v-for="(img, index) in project.img_lis" :key="index">
+            <img :src="img.gambar" class="w-full h-[13rem] md:h-[45rem] object-contain" />
+          </swiper-slide>
+        </swiper>
+        <swiper
+          @swiper="setThumbsSwiper"
+          :loop="true"
+          :breakpoints="{
+            300: { slidesPerView: 3, spaceBetween: 10 },
+            768: { slidesPerView: 3, spaceBetween: 10 },
+            1024: { slidesPerView: 4, spaceBetween: 10 },
+          }"
+          :freeMode="true"
+          :watchSlidesProgress="true"
+          :modules="modules"
+          class="mySwiper"
+        >
+          <swiper-slide v-for="(img, index) in project.img_lis" :key="index" class="mt-2 md:mt-0.5">
+            <img :src="img.gambar" class="w-full object-contain" />
+          </swiper-slide>
+        </swiper>
       </div>
 
       <!-- deskripsi -->
-      <div class="my-3">
+      <div class="mt-8">
         <h3 class="text-2xl mb-1 md:mb-0 font-semibold text-primary">Deskripsi Project</h3>
         <p class="text-sm md:text-base dark:text-gray-300">
           {{ project.deskripsi }}. Yang dikerjakan secara
