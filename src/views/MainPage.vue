@@ -3,8 +3,11 @@ import { onMounted, ref } from 'vue'
 import Typed from 'typed.js'
 import { ImageAssets } from '@/data/ImageAssets.js'
 import ButtonBg from '@/components/button/ButtonBg.vue'
-import DataSkill from '@/data/skill/DataSkill.js'
 import DataProject from '@/data/project/DataProject.js'
+import DataBahasa from '@/data/skill/DataBahasa.js'
+import DataFramework from '@/data/skill/DataFramework'
+import DataDatabase from '@/data/skill/DataDatabase'
+import DataTools from '@/data/skill/DataTools'
 
 // set Image
 const image = ImageAssets
@@ -22,12 +25,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="pt-16 md:px-16 overflow-hidden relative">
+  <div class="pt-16 md:px-16 overflow-hidden relative" id="home">
     <!-- ornamen -->
     <img :src="ImageAssets.desain" class="absolute top-0 left-0 -z-10" alt="" />
 
     <!-- hero section -->
-    <section class="p-2" id="home">
+    <section class="p-2">
       <div
         class="flex flex-col-reverse md:flex-row items-center justify-between gap-y-2 md:gap-x-3"
       >
@@ -49,12 +52,12 @@ onMounted(() => {
             bisa, kadang pusing mikirin database yang rewel, kadang keteteran bikin UI yang enak
             diliat. Tapi serunya, kita bisa ngeliat ide jadi nyata dari nol sampai jalan. Kodenya
             mungkin kadang berantakan, tapi yang penting jalan dulu, beresin belakangan. Pokoknya
-            prinsipku: <span class="font-bold">‘Coding now, crying later’!</span> 😆
+            prinsipku: <span class="font-bold">‘Santai Tapi Tidak Lalai’!</span> 😎
           </p>
           <div class="flex items-center gap-x-2">
             <ButtonBg
-              text="Lihat Cv"
-              href="/src/assets/cv/CV_WILLY CALVIN CANDRA LAY.pdf"
+              text="Hubungi Saya"
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=willycandra850@gmail.com"
               target="_blank"
             />
           </div>
@@ -70,11 +73,11 @@ onMounted(() => {
     </section>
 
     <!-- about -->
-    <section class="p-2 md:pt-10 mt-8" id="about">
+    <section class="p-2 md:pt-16 mt-8" id="about">
       <div class="flex flex-col md:flex-row items-center justify-between gap-y-2 md:gap-x-3">
         <!-- kiri -->
         <div class="md:w-1/2 p-1 flex items-center justify-center">
-          <div class="overflow-hidden md:w-[78%]">
+          <div class="overflow-hidden md:w-[80%]">
             <img :src="image.gambarabout" alt="" class="h-full w-full object-center object-cover" />
           </div>
         </div>
@@ -90,7 +93,7 @@ onMounted(() => {
               Yuk Kenalan
             </h2>
             <p
-              class="mb-2 md:mb-6 leading-relaxed text-sm md:text-base bg-forbodylight dark:bg-gray-900 dark:text-gray-300 transition-all duration-300"
+              class="mb-2 md:mb-3 leading-relaxed text-sm bg-forbodylight dark:bg-gray-900 dark:text-gray-300 transition-all duration-300"
             >
               Saya <span class="font-semibold text-primary">Willy Calvin Candra Lay</span>, Akrab
               dipanggil <span class="font-semibold text-primary">Willy</span>, Fullstack Developer
@@ -103,20 +106,92 @@ onMounted(() => {
           </div>
 
           <!-- skill -->
-          <h5 class="text-primary text-base">Skill</h5>
-          <div class="w-full bg-forbodylight dark:bg-gray-900 transition-all duration-300">
-            <div class="mt-1 md:mt-5 flex items-stretch flex-wrap gap-5">
-              <!-- card -->
-              <div
-                v-for="item in DataSkill"
-                :key="item.id"
-                class="w-[15%] md:w-[9%] border-2 border-primary rounded p-0.5"
-              >
-                <!-- if status 0 -->
-                <div class="aspect-square w-full flex items-center justify-center">
-                  <!-- gambar -->
-                  <div class="overflow-hidden p-0.5">
-                    <img :src="item.image" class="" alt="" />
+          <!-- bahasa -->
+          <div class="my-2">
+            <h5 class="text-primary text-base font-semibold">Skill Bahasa Pemograman</h5>
+            <div class="w-full bg-forbodylight dark:bg-gray-900 transition-all duration-300">
+              <div class="mt-1 md:mt-2 flex items-stretch flex-wrap gap-5">
+                <!-- card -->
+                <div
+                  v-for="item in DataBahasa"
+                  :key="item.id"
+                  class="w-[15%] md:w-[7%] shadow rounded p-0.5"
+                >
+                  <!-- if status 0 -->
+                  <div class="aspect-square w-full flex items-center justify-center">
+                    <!-- gambar -->
+                    <div class="overflow-hidden p-0.5">
+                      <img :src="item.image" class="" alt="" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- framework -->
+          <div class="my-2">
+            <h5 class="text-primary text-base font-semibold">Framework</h5>
+            <div class="w-full bg-forbodylight dark:bg-gray-900 transition-all duration-300">
+              <div class="mt-1 md:mt-2 flex items-stretch flex-wrap gap-5">
+                <!-- card -->
+                <div
+                  v-for="item in DataFramework"
+                  :key="item.id"
+                  class="w-[15%] md:w-[7%] shadow rounded p-0.5"
+                >
+                  <!-- if status 0 -->
+                  <div class="aspect-square w-full flex items-center justify-center">
+                    <!-- gambar -->
+                    <div class="overflow-hidden p-0.5">
+                      <img :src="item.image" class="" alt="" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- database -->
+          <div class="my-2">
+            <h5 class="text-primary text-base font-semibold">Database</h5>
+            <div class="w-full bg-forbodylight dark:bg-gray-900 transition-all duration-300">
+              <div class="mt-1 md:mt-2 flex items-stretch flex-wrap gap-5">
+                <!-- card -->
+                <div
+                  v-for="item in DataDatabase"
+                  :key="item.id"
+                  class="w-[15%] md:w-[7%] shadow rounded p-0.5"
+                >
+                  <!-- if status 0 -->
+                  <div class="aspect-square w-full flex items-center justify-center">
+                    <!-- gambar -->
+                    <div class="overflow-hidden p-0.5">
+                      <img :src="item.image" class="" alt="" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tools -->
+          <div class="my-2">
+            <h5 class="text-primary text-base font-semibold">Tools Development</h5>
+            <div class="w-full bg-forbodylight dark:bg-gray-900 transition-all duration-300">
+              <div class="mt-1 md:mt-2 flex items-stretch flex-wrap gap-5">
+                <!-- card -->
+                <div
+                  v-for="item in DataTools"
+                  :key="item.id"
+                  class="w-[15%] md:w-[7%] shadow rounded p-0.5"
+                >
+                  <!-- if status 0 -->
+                  <div class="aspect-square w-full flex items-center justify-center">
+                    <!-- gambar -->
+                    <div class="overflow-hidden p-0.5">
+                      <img :src="item.image" class="" alt="" />
+                    </div>
                   </div>
                 </div>
               </div>
