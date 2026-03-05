@@ -21,7 +21,7 @@ const skillCategories = [
 ]
 
 const activeFilter = ref('Semua')
-const filters = ['Semua', 'Laravel', 'ReactJs']
+const filters = ['Semua', 'Laravel', 'React']
 const filteredProjects = computed(() => {
   if (activeFilter.value === 'Semua') return DataProject
   return DataProject.filter((project) =>
