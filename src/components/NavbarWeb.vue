@@ -1,7 +1,7 @@
 <script setup>
 import { useDropmenuNavbar } from '../composables/Navbar/useDropmenuNavbar.js'
 import { ref, onMounted, onUnmounted } from 'vue'
-import DarkMode from '../components/DarkMode.vue'
+import DarkMode from '@/components/DarkMode.vue'
 
 const { isMobileMenuOpen, toggleMobileMenu, closeMobileMenu } = useDropmenuNavbar()
 

@@ -10,7 +10,7 @@ export function useProject() {
   const route = useRoute()
   const router = useRouter()
   const project = ref(null)
-  let DaftarSkill = [...DataBahasa, ...DataFramework, ...DataDatabase, ...DataTools]
+  const DaftarSkill = [...DataBahasa, ...DataFramework, ...DataDatabase, ...DataTools]
 
   const fetchProject = () => {
     const projectId = route.params.id

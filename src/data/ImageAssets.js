@@ -15,9 +15,10 @@ import nodejs from '@/assets/img/skill/nodejs.png'
 import reactjs from '@/assets/img/skill/reactjs.png'
 import vuejs from '@/assets/img/skill/vuejs.png'
 import laravel from '@/assets/img/skill/laravel.png'
-import mongodb from '@/assets/img/skill/mongodb.png'
+import postgresql from '@/assets/img/skill/postgresql.png'
 import express from '@/assets/img/skill/express.png'
 import n8n from '@/assets/img/skill/n8n.png'
+import gitlab from '@/assets/img/skill/gitlab.png'
 
 // project
 import toeiclanding from '@/assets/img/project/toeiclanding.png'
@@ -27,6 +28,14 @@ import absenwisuda from '@/assets/img/project/absenwisuda.png'
 import balijobfinder from '@/assets/img/project/balijobfinder.png'
 import intechfest from '@/assets/img/project/intechfest.png'
 import sina from '@/assets/img/project/sina.png'
+import proofylink from '@/assets/img/project/proofylink.png'
+
+// project proofylink
+import proofylink_1 from '@/assets/img/project/list/proofylink/1.png'
+import proofylink_2 from '@/assets/img/project/list/proofylink/2.png'
+import proofylink_3 from '@/assets/img/project/list/proofylink/3.png'
+import proofylink_4 from '@/assets/img/project/list/proofylink/4.png'
+import proofylink_5 from '@/assets/img/project/list/proofylink/5.png'
 
 // project sina
 import sina_1 from '@/assets/img/project/list/sina/1.png'
@@ -98,11 +107,12 @@ export const ImageAssets = {
   laravel: laravel,
   reactjs: reactjs,
   vuejs: vuejs,
-  mongodb: mongodb,
+  postgresql: postgresql,
   express: express,
   mysql: mysql,
   nodejs: nodejs,
   n8n: n8n,
+  gitlab: gitlab,
 
   // project
   toeiclanding: toeiclanding,
@@ -112,6 +122,14 @@ export const ImageAssets = {
   sina: sina,
   intechfest: intechfest,
   absenwisuda: absenwisuda,
+  proofylink: proofylink,
+
+  // project proofylink
+  proofylink_1: proofylink_1,
+  proofylink_2: proofylink_2,
+  proofylink_3: proofylink_3,
+  proofylink_4: proofylink_4,
+  proofylink_5: proofylink_5,
 
   // project sina
   sina_1: sina_1,
