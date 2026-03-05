@@ -19,13 +19,13 @@ const { thumbsSwiper, setThumbsSwiper, modules } = useSwiper()
     <div class="py-5">
       <!-- judul -->
       <div class="my-5">
-        <h1 class="text-3xl md:text-5xl text-primary font-semibold">{{ project.nama_project }}</h1>
-        <p class="text-sm md:text-lg text-gray-400 mt-1">{{ project.dibuat }}</p>
+        <h1 class="text-3xl md:text-4xl text-primary font-semibold">{{ project.projectName }}</h1>
+        <p class="text-sm md:text-lg text-gray-400 mt-1">{{ project.createdAt }}</p>
       </div>
 
       <!-- tampilkan gambar -->
       <div class="">
-        <h3 class="text-2xl font-semibold text-primary">Preview</h3>
+        <h3 class="text-lg font-semibold text-primary">Preview</h3>
         <swiper
           :style="{
             '--swiper-navigation-color': '#fff',
@@ -38,8 +38,8 @@ const { thumbsSwiper, setThumbsSwiper, modules } = useSwiper()
           :modules="modules"
           class="mySwiper2"
         >
-          <swiper-slide v-for="(img, index) in project.img_lis" :key="index">
-            <img :src="img.gambar" class="w-full h-[13rem] md:h-[45rem] object-contain" />
+          <swiper-slide v-for="(img, index) in project.gallery" :key="index">
+            <img :src="img.image" class="w-full h-[13rem] md:h-[45rem] object-contain" />
           </swiper-slide>
         </swiper>
         <swiper
@@ -55,26 +55,30 @@ const { thumbsSwiper, setThumbsSwiper, modules } = useSwiper()
           :modules="modules"
           class="mySwiper"
         >
-          <swiper-slide v-for="(img, index) in project.img_lis" :key="index" class="mt-2 md:mt-0.5">
-            <img :src="img.gambar" class="w-full object-contain" />
+          <swiper-slide v-for="(img, index) in project.gallery" :key="index" class="mt-2 md:mt-0.5">
+            <img :src="img.image" class="w-full object-contain" />
           </swiper-slide>
         </swiper>
       </div>
 
       <!-- deskripsi -->
       <div class="mt-8">
-        <h3 class="text-2xl mb-1 md:mb-0 font-semibold text-primary">Deskripsi Project</h3>
+        <h3 class="text-xl mb-1 md:mb-0 font-semibold text-primary">Deskripsi Project</h3>
         <p class="text-sm md:text-base dark:text-gray-300">
-          {{ project.deskripsi }}. Yang dikerjakan secara
-          <span class="text-primary">{{ project.dikerjakan }}.</span>
+          {{ project.description }}. Yang dikerjakan secara
+          <span class="text-primary">{{ project.workType }}.</span>
         </p>
       </div>
 
       <!-- fitur -->
       <div class="mt-8">
-        <h3 class="text-2xl font-semibold text-primary">Fitur Project</h3>
+        <h3 class="text-xl font-semibold text-primary">List Tugas yang Dikerjakan :</h3>
         <ol class="list-decimal pl-5 dark:text-gray-300">
-          <li v-for="(item, index) in project.fitur" :key="index" class="py-1 text-sm md:text-base">
+          <li
+            v-for="(item, index) in project.jobList"
+            :key="index"
+            class="py-1 text-sm md:text-base"
+          >
             {{ item }}
           </li>
         </ol>
@@ -82,7 +86,7 @@ const { thumbsSwiper, setThumbsSwiper, modules } = useSwiper()
 
       <!-- tools -->
       <div class="my-8">
-        <h3 class="text-2xl font-semibold mb-2 text-primary">Tools yang Digunakan</h3>
+        <h3 class="text-xl font-semibold mb-2 text-primary">Tools yang Digunakan</h3>
         <div class="flex items-center gap-8 dark:text-gray-300">
           <div
             v-for="(skill, index) in projectSkills"

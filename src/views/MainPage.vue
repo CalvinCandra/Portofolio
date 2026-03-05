@@ -1,26 +1,32 @@
 <script setup>
-import { onMounted, ref } from 'vue'
-import Typed from 'typed.js'
+import { ref, computed } from 'vue'
+import { useTyping } from '@/composables/Herosection/useTyping.js'
 import { ImageAssets } from '@/data/ImageAssets.js'
 import ButtonBg from '@/components/button/ButtonBg.vue'
 import DataProject from '@/data/project/DataProject.js'
 import DataBahasa from '@/data/skill/DataBahasa.js'
-import DataFramework from '@/data/skill/DataFramework'
-import DataDatabase from '@/data/skill/DataDatabase'
-import DataTools from '@/data/skill/DataTools'
+import DataFramework from '@/data/skill/DataFramework.js'
+import DataDatabase from '@/data/skill/DataDatabase.js'
+import DataTools from '@/data/skill/DataTools.js'
 
-// set Image
+const { el } = useTyping(['Software Engineer', 'Backend Developer', 'Frontend Developer'])
+
 const image = ImageAssets
 
-// set animasi typing
-const el = ref(null)
-onMounted(() => {
-  new Typed(el.value, {
-    strings: ['Frontend Developer', 'Backend Developer', 'Fullstack Developer'],
-    typeSpeed: 100,
-    backSpeed: 50,
-    loop: true,
-  })
+const skillCategories = [
+  { label: 'Bahasa Pemrograman', items: DataBahasa },
+  { label: 'Framework', items: DataFramework },
+  { label: 'Database', items: DataDatabase },
+  { label: 'Tools', items: DataTools },
+]
+
+const activeFilter = ref('Semua')
+const filters = ['Semua', 'Laravel', 'ReactJs']
+const filteredProjects = computed(() => {
+  if (activeFilter.value === 'Semua') return DataProject
+  return DataProject.filter((project) =>
+    project.tools.map((t) => t.toLowerCase()).includes(activeFilter.value.toLowerCase()),
+  )
 })
 </script>
 
@@ -48,11 +54,13 @@ onMounted(() => {
           <p
             class="text-justify text-sm md:text-base mt-2 mb-3 dark:text-gray-300 transition-all duration-300"
           >
-            Jadi <span class="text-primary">Fullstack Developer </span> itu kayak jadi tukang serba
-            bisa, kadang pusing mikirin database yang rewel, kadang keteteran bikin UI yang enak
-            diliat. Tapi serunya, kita bisa ngeliat ide jadi nyata dari nol sampai jalan. Kodenya
-            mungkin kadang berantakan, tapi yang penting jalan dulu, beresin belakangan. Pokoknya
-            prinsipku: <span class="font-bold">‘Santai Tapi Tidak Lalai’!</span> 😎
+            Jadi <span class="text-primary">Software Engineer</span> itu kayak jadi arsitek
+            sekaligus montir digital. Kadang pusing bongkar pasang logika algoritma yang ribet,
+            kadang begadang cuma demi nyari satu <em>bug</em> yang hobi sembunyi. Tapi serunya, kita
+            nggak cuma bikin aplikasi jalan, tapi mastiin sistemnya kokoh, efisien, dan siap buat
+            masa depan. Kodenya mungkin nggak selalu sempurna di awal, tapi eksplorasi dan perbaikan
+            itu bagian dari seni. Pokoknya prinsipku:
+            <span class="font-bold">‘Santai Tapi Tidak Lalai’!</span> 😎
           </p>
           <div class="flex items-center gap-x-2">
             <ButtonBg
@@ -106,94 +114,26 @@ onMounted(() => {
           </div>
 
           <!-- skill -->
-          <!-- bahasa -->
-          <div class="my-2">
-            <h5 class="text-primary text-base font-semibold">Skill Bahasa Pemograman</h5>
-            <div class="w-full bg-forbodylight dark:bg-gray-900 transition-all duration-300">
-              <div class="mt-1 md:mt-2 flex items-stretch flex-wrap gap-5">
-                <!-- card -->
+          <div v-for="category in skillCategories" :key="category.label" class="mb-6">
+            <h5 class="text-primary mb-3">{{ category.label }}</h5>
+            <div class="flex flex-wrap gap-3">
+              <div
+                v-for="item in category.items"
+                :key="item.id"
+                class="group relative flex items-center justify-center p-3 rounded-xl border transition-all duration-300 bg-white border-gray-200 hover:border-primary hover:shadow-md dark:bg-neutral-800 dark:border-neutral-700 dark:hover:border-primary dark:hover:shadow-none"
+              >
+                <!-- Tooltip -->
                 <div
-                  v-for="item in DataBahasa"
-                  :key="item.id"
-                  class="w-[15%] md:w-[7%] shadow rounded p-0.5"
+                  class="absolute -top-9 left-1/2 -translate-x-1/2 px-2 py-1 rounded-md text-xs font-medium whitespace-nowrap bg-gray-800 text-white dark:bg-neutral-600 dark:text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-10"
                 >
-                  <!-- if status 0 -->
-                  <div class="aspect-square w-full flex items-center justify-center">
-                    <!-- gambar -->
-                    <div class="overflow-hidden p-0.5">
-                      <img :src="item.image" class="" alt="" />
-                    </div>
-                  </div>
+                  {{ item.name }}
+                  <!-- Arrow tooltip -->
+                  <div
+                    class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-800 dark:border-t-neutral-600"
+                  ></div>
                 </div>
-              </div>
-            </div>
-          </div>
 
-          <!-- framework -->
-          <div class="my-2">
-            <h5 class="text-primary text-base font-semibold">Framework</h5>
-            <div class="w-full bg-forbodylight dark:bg-gray-900 transition-all duration-300">
-              <div class="mt-1 md:mt-2 flex items-stretch flex-wrap gap-5">
-                <!-- card -->
-                <div
-                  v-for="item in DataFramework"
-                  :key="item.id"
-                  class="w-[15%] md:w-[7%] shadow rounded p-0.5"
-                >
-                  <!-- if status 0 -->
-                  <div class="aspect-square w-full flex items-center justify-center">
-                    <!-- gambar -->
-                    <div class="overflow-hidden p-0.5">
-                      <img :src="item.image" class="" alt="" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- database -->
-          <div class="my-2">
-            <h5 class="text-primary text-base font-semibold">Database</h5>
-            <div class="w-full bg-forbodylight dark:bg-gray-900 transition-all duration-300">
-              <div class="mt-1 md:mt-2 flex items-stretch flex-wrap gap-5">
-                <!-- card -->
-                <div
-                  v-for="item in DataDatabase"
-                  :key="item.id"
-                  class="w-[15%] md:w-[7%] shadow rounded p-0.5"
-                >
-                  <!-- if status 0 -->
-                  <div class="aspect-square w-full flex items-center justify-center">
-                    <!-- gambar -->
-                    <div class="overflow-hidden p-0.5">
-                      <img :src="item.image" class="" alt="" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Tools -->
-          <div class="my-2">
-            <h5 class="text-primary text-base font-semibold">Tools Development</h5>
-            <div class="w-full bg-forbodylight dark:bg-gray-900 transition-all duration-300">
-              <div class="mt-1 md:mt-2 flex items-stretch flex-wrap gap-5">
-                <!-- card -->
-                <div
-                  v-for="item in DataTools"
-                  :key="item.id"
-                  class="w-[15%] md:w-[7%] shadow rounded p-0.5"
-                >
-                  <!-- if status 0 -->
-                  <div class="aspect-square w-full flex items-center justify-center">
-                    <!-- gambar -->
-                    <div class="overflow-hidden p-0.5">
-                      <img :src="item.image" class="" alt="" />
-                    </div>
-                  </div>
-                </div>
+                <img :src="item.image" :alt="item.name" class="w-10 h-10 object-contain" />
               </div>
             </div>
           </div>
@@ -213,40 +153,54 @@ onMounted(() => {
         <p>Sistem atau Website yang telah saya buat dalam berkarir di bidang Web Development.</p>
       </div>
 
-      <!-- bagian body project -->
-      <div class="mx-auto flex items-center gap-6 md:g-2 lg:gap-6.5 flex-wrap my-5">
-        <!-- card -->
-        <div
-          v-for="item in DataProject"
-          class="w-full md:w-[48%] bg-forbodylight dark:bg-gray-900 dark:text-gray-300 transition-all duration-300 p-4 rounded-lg border-2 border-primary"
-          :key="item.id"
+      <!-- Filter Buttons -->
+      <div class="flex gap-3 mb-6 mt-5 flex-wrap justify-center">
+        <button
+          v-for="filter in filters"
+          :key="filter"
+          @click="activeFilter = filter"
+          class="px-4 py-2 rounded-xl text-sm font-medium border transition-all duration-200 cursor-pointer"
+          :class="
+            activeFilter === filter
+              ? 'bg-primary text-white border-primary'
+              : 'bg-white text-gray-600 border-gray-200 hover:border-primary hover:text-primary dark:bg-neutral-800 dark:text-gray-400 dark:border-neutral-700 dark:hover:border-primary dark:hover:text-primary'
+          "
         >
-          <div class="mb-7">
-            <!-- gambar -->
-            <div class="overflow-hidden">
-              <img
-                :src="item.gambar"
-                alt=""
-                class="w-full md:object-fill rounded-lg h-48 md:h-72"
-              />
-            </div>
+          {{ filter }}
+        </button>
+      </div>
 
-            <!-- header -->
-            <div class="my-5">
-              <h3 class="text-2xl md:text-4xl font-semibold text-primary">
-                {{ item.nama_project }}
-              </h3>
-              <p class="text-sm text-gray-400">{{ item.dibuat }}</p>
-            </div>
-
-            <!-- deskirpsi -->
-            <p class="text-base line-clamp-2">{{ item.deskripsi }}</p>
+      <!-- Grid Project -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div
+          v-for="item in filteredProjects"
+          :key="item.id"
+          class="flex flex-col rounded-2xl border-2 border-primary overflow-hidden transition-all duration-300 bg-white hover:shadow-lg hover:-translate-y-1 dark:bg-transparent dark:text-gray-300 dark:hover:shadow-none"
+        >
+          <!-- Thumbnail -->
+          <div class="w-full h-48 overflow-hidden p-2">
+            <img :src="item.thumbnail" :alt="item.projectName" class="w-full object-cover" />
           </div>
 
-          <!-- button card -->
-          <div class="">
-            <ButtonBg text="Lihat Detail" :href="`/project/${item.id}`" />
+          <!-- Content -->
+          <div class="flex flex-col flex-1 p-4 gap-2">
+            <h3 class="text-lg font-semibold text-primary">
+              {{ item.projectName }} - {{ item.role }}
+            </h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400">{{ item.createdAt }}</p>
+            <p class="text-sm line-clamp-2 flex-1">{{ item.description }}</p>
+            <div class="pt-2">
+              <ButtonBg text="Lihat Detail" :href="`/project/${item.id}`" />
+            </div>
           </div>
+        </div>
+
+        <!-- Fallback jika hasil filter kosong -->
+        <div
+          v-if="filteredProjects.length === 0"
+          class="col-span-full text-center py-16 text-gray-400 dark:text-gray-500"
+        >
+          <p>Tidak ada project dengan teknologi ini.</p>
         </div>
       </div>
     </section>

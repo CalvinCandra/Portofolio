@@ -1,39 +1,76 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 
 const isDark = ref(false)
 
-function toggleDarkMode() {
-  isDark.value = !isDark.value
-  const html = document.documentElement
-
-  if (isDark.value) {
-    html.classList.add('dark')
-    localStorage.setItem('theme', 'dark')
+const applyTheme = (dark) => {
+  isDark.value = dark
+  if (dark) {
+    document.documentElement.classList.add('dark')
   } else {
-    html.classList.remove('dark')
-    localStorage.setItem('theme', 'light')
+    document.documentElement.classList.remove('dark')
   }
 }
 
-// Perbaiki onMounted untuk handle null localStorage
+const toggleDarkMode = () => {
+  const newValue = !isDark.value
+  localStorage.setItem('theme', newValue ? 'dark' : 'light')
+  applyTheme(newValue)
+}
+
 onMounted(() => {
   const savedTheme = localStorage.getItem('theme')
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
 
-  isDark.value = savedTheme ? savedTheme === 'dark' : prefersDark
-  document.documentElement.classList.toggle('dark', isDark.value)
+  if (savedTheme) {
+    applyTheme(savedTheme === 'dark')
+  } else {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    applyTheme(prefersDark)
+  }
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    if (!localStorage.getItem('theme')) {
+      applyTheme(e.matches)
+    }
+  })
 })
 </script>
 
 <template>
-  <label class="inline-flex items-center cursor-pointer p-2" @click="toggleDarkMode">
-    <input type="checkbox" class="sr-only peer" :checked="isDark" @change="toggleDarkMode" />
-    <div
-      class="relative w-11 h-6 bg-gray-900 rounded-full peer peer-checked:after:translate-x-full peer-checked:bg-primary after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"
-    ></div>
-    <span class="ms-3 text-sm font-medium">
-      {{ isDark ? '☀️' : '🌙' }}
-    </span>
-  </label>
+  <button
+    @click="toggleDarkMode"
+    aria-label="Toggle dark mode"
+    class="p-2 rounded-lg transition-colors duration-300 hover:bg-gray-100 dark:hover:bg-neutral-700"
+  >
+    <svg
+      v-if="isDark"
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-5 h-5 text-yellow-400"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m15.07-6.07l-.71.71M6.34 17.66l-.71.71M17.66 17.66l-.71-.71M6.34 6.34l-.71-.71M12 5a7 7 0 100 14A7 7 0 0012 5z"
+      />
+    </svg>
+    <svg
+      v-else
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-5 h-5 text-gray-700"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"
+      />
+    </svg>
+  </button>
 </template>

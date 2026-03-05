@@ -3,16 +3,16 @@ import { useRoute } from 'vue-router'
 import NavbarWeb from './components/NavbarWeb.vue'
 import FooterWeb from './components/FooterWeb.vue'
 
-const router = useRoute()
+const route = useRoute()
 </script>
 
 <template>
   <!-- Navbar -->
-  <NavbarWeb v-if="router.meta.showLayout" />
+  <NavbarWeb v-if="route.meta.showLayout" />
 
   <!-- Main Konten -->
   <router-view></router-view>
 
   <!-- footer -->
-  <FooterWeb v-if="router.meta.showLayout" />
+  <FooterWeb v-if="route.meta.showLayout" />
 </template>

@@ -8,8 +8,8 @@ const DataDatabase = [
   },
   {
     id: 2,
-    name: 'monggodb',
-    image: ImageAssets.mongodb,
+    name: 'postgresql',
+    image: ImageAssets.postgresql,
   },
 ]
 

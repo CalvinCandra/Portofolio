@@ -8,6 +8,11 @@ const DataTools = [
   },
   {
     id: 2,
+    image: ImageAssets.gitlab,
+    name: 'gitlab',
+  },
+  {
+    id: 3,
     image: ImageAssets.n8n,
     name: 'n8n',
   },

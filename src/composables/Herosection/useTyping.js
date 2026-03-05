@@ -1,27 +1,21 @@
-import { onMounted, onUnmounted, ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import Typed from 'typed.js'
 
-export function useTyped() {
+export function useTyping(strings = []) {
   const el = ref(null)
-  const typedInstance = ref(null)
+  let typedInstance = null
 
   onMounted(() => {
-    if (!el.value) return
-
-    typedInstance.value = new Typed(el.value, {
-      strings: ['Halo dari Typed.js!', 'Vue 3 Manual Setup'],
-      typeSpeed: 50,
-      backSpeed: 30,
+    typedInstance = new Typed(el.value, {
+      strings,
+      typeSpeed: 100,
+      backSpeed: 50,
       loop: true,
-      showCursor: true,
-      cursorChar: '|',
     })
   })
 
   onUnmounted(() => {
-    if (typedInstance.value) {
-      typedInstance.value.destroy()
-    }
+    typedInstance?.destroy()
   })
 
   return { el }
